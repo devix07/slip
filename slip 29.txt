@@ -1,0 +1,47 @@
+Q1. Write a C program to calculate factorial of a number using user defined function.
+[15 Marks]
+#include <stdio.h>
+int fact(int);
+int main()
+{    int n;
+        printf("Enter an integer: ");
+    scanf("%d",&n);
+    // show error if the user enters a negative integer
+                   printf("Factorial of %d = %llu", n, fact(n));
+        return 0;
+}
+int fact(int n)
+{
+int i;
+unsigned long long factorial = 1;
+for(i=1; i<=n; ++i)
+        {
+            factorial *= i;              
+           return factorial;
+        }
+}
+-------------------------------------------------------------------------------------------
+
+Q2. Write a program, which accepts a number n and displays each digit separated by tabs.
+Example: 6702 Output = 6 7 0 2 [25 Marks]
+#include<stdio.h>
+int main()
+{
+      int digit, num,rem;
+      printf("Enter positive integer number: ");
+      scanf("%d", &num); 
+     while(num>0)
+         {
+          rem=rem*10+num%10;
+           num=num/10;
+          }
+      printf("\nYou have entered: ");
+      while (rem > 0)
+      {            digit = rem % 10; 
+            printf("\t %d",digit);
+            rem=rem/10;
+      }
+      return 0;
+}
+
+=============================================================================

@@ -1,0 +1,55 @@
+Q1. Write a program to find sum of digits of a given input number using user defined
+ Function [15 Marks]
+# include<stdio.h>
+
+/* Function to get sum of digits */
+int getSum(int n)
+{
+   int sum = 0;
+   while (n != 0)
+   {
+       sum = sum + n % 10;
+       n = n/10;
+   }
+   return sum;
+}
+
+int main()
+{
+  int n ;
+  printf("\n enter no=");
+  scanf("%d",&n);
+  printf(" %d ", getSum(n));
+  return 0;
+}
+-----------------------------------------------------------------------------------------------
+Q2. Write a program to accept a number and count number of even, odd and zero digits
+ within that number. [25 Marks]
+#include <stdio.h>
+int main()
+{ 
+      int nodd,neven,num,digit,zero=0 ;
+      printf("Enter four digit number: ");
+      scanf("%d",&num);
+      while (num> 0)
+      {
+            digit = num % 10; /* separate LS digit from number */
+            num /= 10;
+            if(digit != 0 && digit % 2 == 0)
+            {
+                  neven++;
+            }
+            else if(digit==0)
+            {
+                  zero++;
+            }
+            else
+            {
+                  nodd++;
+            }
+      }
+      printf("\nOdd digit : %d \nEven digit : %d\nZeros : %d", nodd, neven,zero);
+      return 0;
+}
+
+=============================================================================

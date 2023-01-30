@@ -1,0 +1,206 @@
+Q1. Write a C program to accept dimensions of a cylinder and display the surface area and
+        volume of cylinder. [15 Marks]
+
+
+#include <stdio.h>
+int main()
+{
+    float radius, height;
+    float surface_area, volume;
+    printf("Enter  value for  radius and height of a cylinder : \n");
+    scanf("%f%f", &radius, &height);
+    surface_area = 2 * (22 / 7) * radius * (radius + height);
+    volume = (22 / 7) * radius * radius * height;
+    printf("Surface area of cylinder is: %f", surface_area);
+    printf("\n Volume of cylinder is : %f", volume);
+}
+
+--------------------------------------------------------------------------------------------------------------------
+
+Q2. Create a structure employee (id, name, salary). Accept details of n employees and write a
+        menu driven program to perform the following operations. [25 Marks]
+Search employee by id. Display all employees
+
+
+
+#include<stdio.h>
+struct details
+{
+     char name[30];
+     int eid;
+     int salary;
+}emp[5];
+void emp_search(int r)
+{
+     int id,i;
+     printf("\nEnter Employee-Id to be Searched : ");
+     scanf("%d",&id);
+     printf("----------------------------------------\n");
+     for(i=0;i<r;i++)
+     {
+          if(emp[i].eid==id)
+          {
+               printf("Employee Id : %d",emp[i].eid);
+               printf("\nName        : %s",emp[i].name);
+               printf("\nSalary      : %d\n",emp[i].salary);
+          }
+     }
+}
+void display(int r)
+{
+     int i;
+     printf("\nList of All Employees:\n");
+     printf("-------------------------------\n");
+     printf("Emp-Id\tEmp-Name  Salary\n");
+     printf("--------------------------------\n");
+     for(i=0;i<r;i++)
+     {
+          printf("%d\t%s\t  %d\n",emp[i].eid,emp[i].name,emp[i].salary);
+     }
+}
+int main()
+{
+     int n,i,ch;
+     printf("/*How Many Employee Record You Want to Add*/\n\nEnter Limit  : ");
+     scanf("\n %d",&n);
+     for(i=0;i<n;i++)
+     {
+          printf("-----------------------------------------");
+          printf("\n\tEnter Details of Employee-%d",i+1);
+          printf("\n-----------------------------------------");
+          printf("\nName of Employee : ");
+          scanf("%s",emp[i].name);
+          printf("Employee-Id      : ");
+          scanf("%d",&emp[i].eid);
+          printf("Salary : ");
+          scanf("%d",&emp[i].salary);
+     }
+     while(1)
+     {
+          printf("-----------------------------------------\n");
+          printf("\t\tMenu\n");
+          printf("-----------------------------------------");
+          printf("\n 1:Search Employee by E-ID");
+          printf("\n 2:List of All Employee");
+          printf("\n 3:Exit");
+          printf("\n----------------------------------------\n");
+          printf("Enter Your Choice : ");
+          scanf("\n %d",&ch);
+          switch(ch)
+          {
+               case 1: emp_search(n);
+               break;
+               case 2: display(n);
+               break;
+               case 3: exit(0);
+          }
+     }
+     return 0;
+}
+
+
+=====================================================================================================================
+
+
+
+Consider the following Entities and Relationships                       
+Department (dept_no, dept_name, location)
+Employee (emp_no, emp_name, address, salary, designation)
+Relation between Department and Employee is One to Many
+Constraint: Primary key, salary should be > 0
+
+
+
+Create table dept(dnonumber(4) primary key,
+Dnamevarchar(20),
+location varchar(20));
+
+
+
+insert into dept values(101,’computer’,’pune’);
+insert into dept values(102,’finance’,’pimpri’);
+insert into dept values(103,’computer’,’nashik’);
+insert into dept values(104,’warehouse’,’pune’);
+insert into dept values(105,’account’,’bhosali’);
+
+
+
+ 
+create table emp11(enonumber(4) primary key,
+enamevarchar(20),
+address varchar(20),
+salary number(6) constraint salch11 check (salary>0),
+designation varchar(20),
+dnonumber(4) references dept(dno));
+ 
+
+
+
+insert into emp11 values(201,’seema’,’Pimpri’,’10253’,’Manager’,’101’);
+insert into emp11 values(202,’alok’,’pimpri’,’356854’,’HR’,’102’);
+insert into emp11 values(203,’anil’,’nashik’,’45854’,’IT’,’103’);
+insert into emp11 values(204,’rahul’,’pune’,’56253’,’HR’,’104’);
+insert into emp11 values(205,’atual’,’bhosali’,’1253’,’Supervicer’,’105’);
+insert into emp11 values(206,’geeta’,’Pimpri’,’10223’,’Manager’,’101’);
+
+
+
+ 
+
+
+
+write queries for following.
+·  Find total salary of all computer department employees.
+
+
+
+ 
+
+
+
+Select sum(salary)as total_salary
+From emp, dept
+Where emp.dno=dept.dno and
+       dname=’computer’; 
+
+
+
+·  Find the name of department whose salary is above 10000.
+
+
+
+Select distinct dname,salary
+From emp, dept
+wheredept.dno=emp.dno and
+salary>10000; 
+
+
+
+·  Count the number of employees in each department.
+
+
+Select dname,count(*) as count
+from emp,dept
+wheredept.dno=emp.dnogroup by dname; 
+
+
+Display the maximum salary of each department.
+select max(salary),dname from emp,dept
+where dept.dno=emp.dno group by dname;
+ 
+
+
+
+·  Display department wise employee list.
+
+ 
+
+
+
+select distinctdname, ename
+from emp, dept
+wheredept.dno=emp.dnoorder by dname;
+
+
+
+

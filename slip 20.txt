@@ -1,0 +1,69 @@
+Q1. Write a C program to generate following triangle up to n lines. [15 Marks]
+1
+2 3
+4 5 6
+#include <stdio.h>
+int main()
+{
+    int rows, i, j, number= 1;
+
+    printf("Enter number of rows: ");
+    scanf("%d",&rows);
+
+    for(i=1; i <= rows; i++)
+    {
+        for(j=1; j <= i; ++j)
+        {
+            printf("%d ", number);
+            ++number;
+        }
+
+        printf("\n");
+    }
+
+    return 0;
+}
+
+---------------------------------------------------------------------------------
+
+Q2. Write a program to calculate addition of two matrices [25 Marks]
+
+
+#include<stdio.h>
+void main()
+{
+        int a[2][2],b[2][2],c[2][2],i,j;
+        clrscr();
+        printf("Enter the value of First 2 x 2 Matrix : ");
+        for(i=0;i<2;i++)
+            {
+                 for(j=0;j<2;j++)
+                     {
+                         scanf("%d",&a[i][j]);
+                      }
+            }
+                 printf("Enter the value of Second 2 x 2 Matrix : ");
+                 for(i=0;i<2;i++)
+                     {
+                        for(j=0;j<2;j++)
+                           {
+                               scanf("%d",&b[i][j]);
+                           }
+                      }
+                               for(i=0;i<2;i++)
+                                   {
+                                      for(j=0;j<2;j++)
+                                         {
+                                            c[i][j]=a[i][j]*b[i][j];
+                                            printf("Sum of Two Matrix : %d\n",c[i][j]);
+                                         }
+                                   }
+                      getch();
+}
+
+
+
+
+
+
+

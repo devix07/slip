@@ -1,0 +1,130 @@
+Q1. Write a C Program to accept a character from the keyboard and display its previous and
+ next character in order. Ex. If character entered is ‘d’, display “The previous character
+ is c”, “The next character is e”. [15 Marks]
+
+
+#include <stdio.h>
+int main()
+{
+char ch;
+printf("Enter character:\t");
+scanf("%c", &ch);
+printf("You entered: %c\n", ch);
+printf("Previous character: %c\n", ch - 1);
+printf("Next character: %c\n", ch + 1);
+}
+
+----------------------------------------------------------------------------------------------------------------------------------
+Q2. Write a program to accept a string and then count the occurrences of a specific character of a string. [25 Marks]
+
+
+
+#include <stdio.h>
+#include <string.h>
+  // Driver code
+int main()
+{     char str[50]= "geeksforgeeks";
+    char c ;
+    int res = 0;
+   printf("\n enter character ");
+   scanf("%c",&c);
+    for (int i=0;i<strlen(str);i++)
+          // checking character in string
+        if (str[i] == c)
+            res++;
+            printf("occurence of %c=%d",c,res++);
+    return 0; }
+
+=========================================================================================================================================
+
+ Consider the following Entities and Relationships                                [30 Marks]
+
+Project (pno, pname, start_date, budget, status)
+
+Department (dno, dname, HOD)
+
+
+
+Relation between Project and Department is Many to One
+        Constraint: Primary key.
+                      Project Status Constraints: C – completed,
+                      P-Progressive, I-Incomplete 
+
+
+ create table dep1
+(dnonumber(4)primary key,
+dnamevarchar(20),
+HOD varchar(10)
+);
+
+
+insert into dep1 values (101,'computer','Mr.Desai');
+insert into dep1 values(102,'math','sanjay');
+insert into dep1 values(103,'computer','rohit');
+insert into dep1 values(104,'stat','pawar');
+insert into dep1 values(105,'electronics','rakesh');
+ 
+
+
+
+create table pro1
+(pnonumber(4)primary key,
+pnamevarchar(20),
+sdate date,
+budget number(5),
+status varchar(25),
+dnonumber(4) references dep1(dno));
+
+
+
+insert into pro1 values(1,'mathematics',’1 mar 2013’,’500000’,'C',102);
+insert into pro1 values(2,'cost',’23 feb 2014’,’3437’,'I',104);
+insert into pro1 values(3,'mathematics',’3 apr 2011’,’2345096’,'P',102);
+insert into pro1 values(4,'eng',’11 Nov 2013’,’23431’,’C’,105);
+insert into pro1 values(5,’programming',’14 oct 2011’,’23453’, 'C',101);
+ 
+
+
+
+        Create a Database in 3NF & write queries for following.
+
+·        List the project name and department details worked in projects that are ‘Complete’.
+
+
+
+select pname,dname,HOD,status from dep1,pro1
+where dep1.dno=pro1.dno and
+status=’C’; 
+
+
+·        Display total budget of each department.
+
+
+Select dname, sum(budget) from dep1,pro1
+where dep1.dno=pro1.dno group by dname;
+ 
+
+·        Display incomplete project of each department 
+
+
+Select dname, status from dep1,pro1
+Where status=’I’and
+ dep1.dno=pro1.dno group by dname,status;
+
+
+·        Find the names of departments that have budget greater than 50000 
+
+
+Select dname,  budget from dep1,pro1
+Where budget> 50000 and
+ dep1.dno=pro1.dno;
+
+
+·        Display all project working under 'Mr.Desai'.
+
+
+Select pname from dep1,pro1
+Where HOD='Mr.Desai' and
+ dep1.dno=pro1.dno;
+
+===================================================================================================================

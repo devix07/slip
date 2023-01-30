@@ -1,0 +1,139 @@
+Q1. Write a C program to accept a character from the user and check whether the character is a vowel or consonant. [15 Marks]
+
+
+#include <stdio.h>
+int main()
+{
+    char c;
+    int isLowercaseVowel, isUppercaseVowel;
+    printf("Enter an alphabet: ");
+    scanf("%c",&c);
+        isLowercaseVowel = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
+        isUppercaseVowel = (c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U');
+    if (isLowercaseVowel || isUppercaseVowel)
+        printf("%c is a vowel.", c);
+    else
+        printf("%c is a consonant.", c);
+    return 0;
+}
+
+
+--------------------------------------------------------------------------------------------------------------
+Q2. Write a program to accept two numbers as range and display multiplication table
+ of all numbers within that range. [25 Marks]
+
+
+
+#include <stdio.h>
+int main()
+{    int  i,j;
+        for(j=1; j<=5; j++)
+    {
+        for(i=1; i<=10; i++)
+        { //printf("\t ");
+        printf(" \n %d * %d = %d ",j, i, j*i);
+        }
+    printf("\n");
+    }
+    return 0;
+}
+
+==========================================================================================================
+
+
+
+Property (pno, desc, area, rate)
+Owner (owner_name, addr, phno)
+Relation between owner and Property is One to Many.
+Constraint: Primary key, rate should be > 0
+Create a Database in 3NF & write queries for following.
+
+
+
+ 
+
+
+
+create table property1(pnonumber(4) primary key,
+desvarchar(20),
+areavarchar(20),
+rate number(10) constraint rtchk1 check(rate>0));
+
+insert into property1 values(1,’landline’,’chinchwad’,’10000’);
+insert into property1 values (2,’House’,’chinchwad’,’10450’);
+insert into property1 values (3,’landline’,’pune’,’10540’);
+insert into property1 values (4,’Agriculturalland’,’hdapsar’,’14500’);
+insert into property1 values (5,’House’,’pune’,’10626’);
+
+
+create table owner1(ownernamevarchar(20),
+addressvarchar(20),
+phnonumber(10),
+pnonumber(4) REFERENCES property1(pno));
+
+insert into owner1 values('patil','chinchwad',1234567,1);
+insert into owner1 values('seema','chinchwad',45342333,2);
+insert into owner1 values('seeta','pune',12334237,3);
+insert into owner1 values('suhas','hadapsar',123213567,4);
+insert into owner1 values('patil','pune',1234567,5);
+insert into owner1 values('seeta','pune',12334237,2);
+
+
+
+·   Display area wise property details
+
+
+Select distinct area,ownername,des,rate from  property, owner
+Where property.pno=owner.pno order by area;
+
+
+
+ 
+
+
+
+·   Display property owned by 'Mr.Patil' having minimum rate.
+
+
+
+Select distinct desfrom property1, owner1
+Where property1.pno=owner1.pnoand
+rate=(select min(rate) from property1, owner1
+Where property1.pno=owner1.pno and ownername=’patil’);
+
+
+
+ 
+    Display all properties with owner name that having highest rate of properties located in Chinchwad area.
+
+
+
+ Select distinct ownername,des from  property1, owner1
+Where property1.pno=owner1.pno and
+rate=(select max(rate) from property1 where area=’chinchwad’ );
+
+
+
+
+
+·    Display owner name having maximum no. of properties
+
+
+
+Select distinct ownername, count(*) from property1, owner1
+Where property1.pno=owner1.pno group by ownername
+Having max(owner1.pno)= (select count (*) from property1);
+=========================================================================
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+

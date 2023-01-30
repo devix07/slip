@@ -1,0 +1,41 @@
+Q1. Write a program to accept a string and then count the occurrences of a specific
+ character of a string. [15 Marks]
+
+
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+    char str[50]= "geeksforgeeks";
+    char c ;
+    int res = 0;
+   printf("\n enter character ");
+   scanf("%c",&c);
+    for (int i=0;i<strlen(str);i++)
+          // checking character in string
+        if (str[i] == c)
+            res++;
+            printf("occurence of %c=%d",c,res++);
+    return 0;
+}
+
+-----------------------------------------------------------------------------------------
+Q2. Write a program to accept two numbers as range and display multiplication table
+ of all numbers within that range. [25 Marks]
+
+
+#include <stdio.h>
+int main()
+{    int  i,j;
+        for(j=1; j<=5; j++)
+    {
+        for(i=1; i<=10; i++)
+        { //printf("\t ");
+        printf(" \n %d * %d = %d ",j, i, j*i);
+        }
+    printf("\n");
+    }
+    return 0;
+}
+============================================================================================
+

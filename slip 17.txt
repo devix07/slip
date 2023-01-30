@@ -1,0 +1,85 @@
+Q1. Write a C program to display multiplication table of a given input number [15 Marks]
+
+#include <stdio.h>
+int main() {
+    int num, i = 1;
+    printf("
+    Enter any Number:");
+    scanf("%d", &num);
+    printf("Multiplication table of %d: ", num);
+        while (i <= 10) {
+        printf("
+        %d x %d = %d", num, i, num * i);
+        i++;
+    }
+    return 0;
+}
+-----------------------------------------------------------------------------------------
+
+Q2. Write a menu driven program to perform the following operation on m*n
+ Matrix [25 Marks]
+1. Display transpose of a matrix
+2. Calculate sum of all odd elements of matrix
+#include <stdio.h>
+
+void main()
+{
+    int a[10][10], transpose[10][10], r, c, i, j,sum=0, fig_code;
+    printf("Enter rows and columns of matrix: ");
+    scanf("%d %d", &r, &c);
+
+    // Storing elements of the matrix
+    printf("\nEnter elements of matrix:\n");
+    for(i=0; i<r; ++i)
+        for(j=0; j<c; ++j)
+        {
+            printf("Enter element a%d%d: ",i+1, j+1);
+            scanf("%d", &a[i][j]);
+        }
+
+    printf("-------------------------\n");
+    printf(" 1 --> Transpose\n");
+    printf(" 2 --> Sum of odd elements\n");
+    printf("-------------------------\n");
+    printf("Enter the Figure code\n");
+    scanf("%d", &fig_code);
+    switch(fig_code)
+    {
+ 
+    case 1:
+        for(i=0; i<r; ++i)
+        for(j=0; j<c; ++j)
+        {
+            transpose[j][i] = a[i][j];
+        }
+        printf("\nTranspose of Matrix:\n");
+       for(i=0; i<c; ++i)
+        for(j=0; j<r; ++j)
+        {
+            printf("%d  ",transpose[i][j]);
+            if(j==r-1)
+                printf("\n\n");
+        }
+
+        break;
+    case 2:
+     
+        for(i=0; i<r; ++i)
+        for(j=0; j<c; ++j)
+        {
+            if(a[i][j]%2!=0)
+                  sum=sum+a[i][j];
+
+        }
+        printf("\n sum of odd elements= %d",sum);
+        break;
+ 
+    default:
+        printf("Error in figure code\n");
+        break;
+    }
+}
+
+================================================================================================================
+
+
